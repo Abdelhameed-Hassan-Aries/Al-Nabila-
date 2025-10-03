@@ -16,9 +16,13 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "Al Nabila Developments",
+  title: "Alresalah Group",
   description:
     "Crafting tomorrow's skyline with visionary developments across Egypt.",
+  icons: {
+    icon: "/alresalah_group_logo_preview.png",
+    apple: "/alresalah_group_logo_preview.png",
+  },
 };
 
 export default function RootLayout({

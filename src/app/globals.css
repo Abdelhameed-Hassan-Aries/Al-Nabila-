@@ -106,6 +106,17 @@ img {
   flex-direction: column;
 }
 
+/* Non-home pages need padding for header */
+.app-body:not(.home-layout) main {
+  padding-top: 75px; /* Mobile header height */
+}
+
+@media (min-width: 768px) {
+  .app-body:not(.home-layout) main {
+    padding-top: 100px; /* Desktop header height */
+  }
+}
+
 /* Navigation */
 .nav-bar {
   position: sticky;
@@ -492,19 +503,9 @@ img {
   padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 5vw, 6rem);
 }
 
-/* Account for header height on non-home pages */
+/* First section already has padding from main */
 .page-section:first-of-type {
-  padding-top: calc(
-    75px + clamp(3rem, 6vw, 5rem)
-  ); /* Mobile header + normal padding */
-}
-
-@media (min-width: 768px) {
-  .page-section:first-of-type {
-    padding-top: calc(
-      100px + clamp(3rem, 6vw, 5rem)
-    ); /* Desktop header + normal padding */
-  }
+  padding-top: clamp(3rem, 6vw, 5rem); /* Normal padding */
 }
 
 /* Override for home page hero sections */
@@ -1073,6 +1074,17 @@ main:not(.home-snap) {
   max-width: 75rem;
   margin: 0 auto;
   padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 5vw, 6rem);
+}
+
+/* First snap section needs padding for fixed header */
+.snap-section:first-child .inner {
+  padding-top: calc(75px + clamp(2rem, 6vw, 4rem)); /* Header height + normal padding */
+}
+
+@media (min-width: 768px) {
+  .snap-section:first-child .inner {
+    padding-top: calc(100px + clamp(2rem, 6vw, 4rem)); /* Header height + normal padding */
+  }
 }
 
 /* Snap Navigation Dots - Desktop Only */
