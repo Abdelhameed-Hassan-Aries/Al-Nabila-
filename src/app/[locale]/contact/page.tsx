@@ -32,9 +32,11 @@ const ContactPage = async ({ params }: ContactPageProps) => {
   return (
     <>
       <div className="hero-section" data-page="contact">
-        <div className="hero-content">
-          <span className="hero-badge">{hero.subtitle}</span>
-          <h1 className="hero-title">{hero.title}</h1>
+        <div className="container">
+          <div className="hero-content">
+            <span className="hero-badge">{hero.subtitle}</span>
+            <h1 className="hero-title">{hero.title}</h1>
+          </div>
         </div>
       </div>
 

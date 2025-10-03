@@ -32,32 +32,40 @@ const ProjectsPage = async ({ params }: ProjectsPageProps) => {
 
   const { hero, counters, categories, methodology } = dictionary.projects;
 
+  // Get the number of counter items
+  const counterItems = [
+    { value: 15, duration: 1.2, suffix: "+", label: counters.projects },
+    { value: 6000, duration: 1.8, suffix: "+", label: counters.clients },
+  ];
+
   return (
     <>
       <div className="hero-section" data-page="projects">
-        <div className="hero-content">
-          <span className="hero-badge">{hero.subtitle}</span>
-          <h1 className="hero-title">{hero.title}</h1>
+        <div className="container">
+          <div className="hero-content">
+            <span className="hero-badge">{hero.subtitle}</span>
+            <h1 className="hero-title">{hero.title}</h1>
+          </div>
         </div>
       </div>
 
       <section className="page-section compact">
         <div className="container">
-          <div className="grid-3">
-            <AnimatedCounter
-              from={0}
-              to={15}
-              duration={1.2}
-              suffix="+"
-              label={counters.projects}
-            />
-            <AnimatedCounter
-              from={0}
-              to={6000}
-              duration={1.8}
-              suffix="+"
-              label={counters.clients}
-            />
+          <div
+            className={`grid-${counterItems.length} ${
+              counterItems.length === 2 ? "grid-center" : ""
+            }`}
+          >
+            {counterItems.map((item, index) => (
+              <AnimatedCounter
+                key={index}
+                from={0}
+                to={item.value}
+                duration={item.duration}
+                suffix={item.suffix}
+                label={item.label}
+              />
+            ))}
           </div>
         </div>
       </section>

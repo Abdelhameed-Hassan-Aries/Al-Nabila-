@@ -2,10 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import type { Dictionary, Locale } from "@/lib/i18n/dictionaries";
 import ContactForm from "@/components/shared/contact-form";
 import SnapNavDots from "./snap-nav-dots";
+
+const AnimatedCounter = dynamic(
+  () => import("@/components/projects/animated-counter")
+);
 
 type HomeExperienceProps = {
   dictionary: Dictionary;
@@ -18,8 +22,6 @@ const fadeInUp = {
 };
 
 const HomeExperience = ({ dictionary, locale }: HomeExperienceProps) => {
-  const [mounted, setMounted] = useState(false);
-
   const {
     hero,
     metrics,
@@ -28,10 +30,6 @@ const HomeExperience = ({ dictionary, locale }: HomeExperienceProps) => {
     pillars,
     contact,
   } = dictionary.home;
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
     <>
@@ -68,26 +66,29 @@ const HomeExperience = ({ dictionary, locale }: HomeExperienceProps) => {
               </div>
             </motion.div>
 
-            <motion.div className="grid-3" style={{ marginTop: "5rem" }}>
-              {metrics.map((metric, index) => (
-                <motion.div
-                  key={metric.label}
-                  className="metric-card"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={
-                    mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
-                  }
-                  transition={{
-                    duration: 0.6,
-                    delay: mounted ? 0.3 + index * 0.15 : 0, // Only delay when mounted
-                    ease: "easeOut",
-                  }}
-                >
-                  <span className="metric-value">{metric.value}</span>
-                  <span className="metric-label">{metric.label}</span>
-                </motion.div>
-              ))}
-            </motion.div>
+            <div className="grid-3" style={{ marginTop: "5rem" }}>
+              <AnimatedCounter
+                from={0}
+                to={280}
+                duration={1.4}
+                suffix="+"
+                label={metrics[0].label}
+              />
+              <AnimatedCounter
+                from={0}
+                to={6000}
+                duration={1.6}
+                suffix="+"
+                label={metrics[1].label}
+              />
+              <AnimatedCounter
+                from={0}
+                to={45}
+                duration={1.2}
+                suffix=""
+                label={metrics[2].label}
+              />
+            </div>
           </div>
         </section>
 
@@ -171,7 +172,11 @@ const HomeExperience = ({ dictionary, locale }: HomeExperienceProps) => {
           </div>
         </section>
 
-        <section id="home-contact" className="snap-section contact-section">
+        <section
+          id="home-contact"
+          className="snap-section contact-section"
+          style={{ paddingTop: "6%" }}
+        >
           <div className="inner">
             <motion.div
               className="section-header"

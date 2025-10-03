@@ -106,17 +106,6 @@ img {
   flex-direction: column;
 }
 
-/* Non-home pages need padding for header */
-.app-body:not(.home-layout) main {
-  padding-top: 75px; /* Mobile header height */
-}
-
-@media (min-width: 768px) {
-  .app-body:not(.home-layout) main {
-    padding-top: 100px; /* Desktop header height */
-  }
-}
-
 /* Navigation */
 .nav-bar {
   position: sticky;
@@ -456,9 +445,22 @@ img {
   backdrop-filter: blur(10px);
 }
 
+/* Hero section on non-home pages with container needs no horizontal padding */
+.app-body .hero-section[data-page="about"],
+.app-body .hero-section[data-page="projects"],
+.app-body .hero-section[data-page="contact"] {
+  padding: calc(75px + clamp(2rem, 6vw, 4rem)) 0 clamp(2rem, 6vw, 4rem) 0;
+}
+
+@media (min-width: 768px) {
+  .app-body .hero-section[data-page="about"],
+  .app-body .hero-section[data-page="projects"],
+  .app-body .hero-section[data-page="contact"] {
+    padding: calc(100px + clamp(2rem, 6vw, 4rem)) 0 clamp(2rem, 6vw, 4rem) 0;
+  }
+}
+
 .hero-content {
-  max-width: 75rem;
-  margin: 0 auto;
   width: 100%;
 }
 
@@ -579,6 +581,22 @@ img {
 @media (min-width: 1024px) {
   .grid-3 {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid-center {
+  justify-content: center;
+}
+
+.grid-2 {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1077,17 +1095,19 @@ main:not(.home-snap) {
 }
 
 /* First snap section needs padding for fixed header */
+.home-snap .snap-section:first-child .inner,
 .snap-section:first-child .inner {
   padding-top: calc(
     75px + clamp(2rem, 6vw, 4rem)
-  ); /* Header height + normal padding */
+  ) !important; /* Header height + normal padding */
 }
 
 @media (min-width: 768px) {
+  .home-snap .snap-section:first-child .inner,
   .snap-section:first-child .inner {
     padding-top: calc(
       100px + clamp(2rem, 6vw, 4rem)
-    ); /* Header height + normal padding */
+    ) !important; /* Header height + normal padding */
   }
 }
 

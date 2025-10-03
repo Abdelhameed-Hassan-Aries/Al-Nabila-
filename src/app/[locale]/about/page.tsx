@@ -30,10 +30,12 @@ const AboutPage = async ({ params }: AboutPageProps) => {
   return (
     <>
       <div className="hero-section" data-page="about">
-        <div className="hero-content">
-          <span className="hero-badge">{hero.subtitle}</span>
-          <h1 className="hero-title">{hero.title}</h1>
-          <p className="hero-subtitle">{hero.statement}</p>
+        <div className="container">
+          <div className="hero-content">
+            <span className="hero-badge">{hero.subtitle}</span>
+            <h1 className="hero-title">{hero.title}</h1>
+            <p className="hero-subtitle">{hero.statement}</p>
+          </div>
         </div>
       </div>
 
