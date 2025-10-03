@@ -1078,12 +1078,16 @@ main:not(.home-snap) {
 
 /* First snap section needs padding for fixed header */
 .snap-section:first-child .inner {
-  padding-top: calc(75px + clamp(2rem, 6vw, 4rem)); /* Header height + normal padding */
+  padding-top: calc(
+    75px + clamp(2rem, 6vw, 4rem)
+  ); /* Header height + normal padding */
 }
 
 @media (min-width: 768px) {
   .snap-section:first-child .inner {
-    padding-top: calc(100px + clamp(2rem, 6vw, 4rem)); /* Header height + normal padding */
+    padding-top: calc(
+      100px + clamp(2rem, 6vw, 4rem)
+    ); /* Header height + normal padding */
   }
 }
 
